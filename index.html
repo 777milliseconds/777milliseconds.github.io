@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <p class="title">Pasir</p>
+    <div class="box">
+        <div class="input-box" contenteditable="true"></div>
+        <button class="send-btn" onclick="test()">➤</button>
+    </div>
+
+    <script>
+
+function test() {
+    let inputBox = document.querySelector(".input-box");
+    let inputText = inputBox.textContent.trim();
+
+    if (inputText !== "") {
+        fetch("http://127.0.0.1/post.js", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ message: inputText })
+        })
+        .then((res) => {
+            if(res.status === 200){
+                window.location.href = "/sent";
+            } else {
+                window.location.href = "/error";
+            }
+        });
+        inputBox.textContent = "";
+        inputBox.focus();
+        document.execCommand("insertText", false, "");
+    }
+}
+
+document.querySelector(".input-box").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        test();
+    }
+});
+
+    </script>
+</body>

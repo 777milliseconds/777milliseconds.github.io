@@ -1,0 +1,121 @@
+@import url('https://fonts.cdnfonts.com/css/akira-expanded');
+
+body {
+  background-color: black;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  color: white;
+  font-family: 'Akira Expanded', sans-serif;
+  font-size: 50px;
+  white-space: nowrap;
+  position: relative;
+}
+
+.title::after {
+  content: "Pasir";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(25px);
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 45%;
+  height: 60px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 10px 20px;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.box:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.box div {
+  flex: 1;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 18px;
+  font-family: 'Akira Expanded', sans-serif;
+  padding: 5px;
+  white-space: nowrap;
+  overflow-x: auto;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  scrollbar-width: none;
+}
+
+.box div::-webkit-scrollbar {
+  display: none;
+}
+
+.input-box {
+  position: relative;
+  min-width: 100px;
+  max-width: 100%;
+  min-height: 30px;
+  color: white;
+  font-weight: bold;
+  outline: none;
+  font-size: 18px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  text-align: left;
+  white-space: nowrap;
+  overflow-x: auto;
+  text-overflow: ellipsis;
+  caret-color: transparent;
+}
+
+.input-box:not(:empty) {
+  caret-color: white;
+}
+
+.input-box:empty:before {
+  content: "TYPE HERE...";
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: bold;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.input-box:empty {
+  caret-color: transparent;
+}
+
+.send-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 20px;
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.send-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
