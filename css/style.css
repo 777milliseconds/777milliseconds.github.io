@@ -1,7 +1,9 @@
 @import url('https://fonts.cdnfonts.com/css/akira-expanded');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat');
 
 body {
-  background-color: black;
+  /*background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%); */
+  background-color: rgb(37, 37, 37);
   min-height: 100vh;
   align-items: center;
   justify-content: center;
@@ -9,21 +11,138 @@ body {
   flex-direction: column;
 }
 
+.music-container {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.icon-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 65px;
+  height: 65px;
+}
+
+.icon-container i,
+.icon-container img {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+@keyframes rainbow {
+  0% { color: rgb(250, 12, 12); text-shadow: 0 0 15px rgb(250, 12, 12) }
+  50% { color: rgb(255, 159, 159); text-shadow: 0 0 15px rgb(255, 59, 59) }
+  100% { color: rgb(250, 12, 12); text-shadow: 0 0 15px rgb(250, 12, 12) }
+}
+
+.tooltip {
+  animation: tooltipBow 10s infinite linear;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  visibility: hidden;
+  opacity: 0;
+  color: white;
+  font-family: monospace;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 23px;
+  text-shadow: 0 0 20px violet,
+  0 0 40px purple,
+  0 0 60px purple,
+  0 0 80px purple,
+  0 0 100px purple,
+  0 0 120px purple,
+  0 0 140px purple,
+  0 0 160px purple,
+  0 0 180px purple,
+  0 0 200px black;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.icon-container:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.code {
+  font-size: 32px;
+  font-family: monospace;
+  font-weight: bold;
+  color: white;
+}
+
+.arrow {
+  filter: 
+    drop-shadow(0 0 20px red) 
+    drop-shadow(0 0 100px red) 
+    drop-shadow(0 0 20px red) !important;
+}
+
+.lean {
+  filter: 
+    drop-shadow(0 0 20px rgba(183, 0, 255, 0.623)) 
+    drop-shadow(0 0 100px rgba(183, 0, 255, 0.623)) 
+    drop-shadow(0 0 20px rgba(183, 0, 255, 0.623)) !important;
+}
+
+.mail {
+  filter: invert(100%) drop-shadow(0 0 20px white)
+  drop-shadow(0 0 100px white) !important;
+}
+
+.instagram {
+  filter: drop-shadow(0 0 20px rgb(238, 146, 241))
+  drop-shadow(0 0 100px pink) !important;
+}
+
+.fa.fa-play-circle {
+  animation: rainbow 10s infinite linear;
+}
+
+.fa.fa-pause-circle {
+  animation: rainbow 10s infinite linear;
+}
+
+.current {
+  animation: rainbow 10s infinite linear;
+}
+
+.current {
+  font-family: 'Akira Expanded', sans-serif;
+  font-size: 30px;
+  white-space: nowrape;
+  position: relative;
+}
+
 .title {
   color: white;
-  font-family: 'Akira Expanded', sans-serif;
-  font-size: 50px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 45px;
   white-space: nowrap;
   position: relative;
 }
 
 .title::after {
-  content: "Pasir";
+  color: white;
+  content: "click here!";
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  filter: blur(25px);
+  filter: blur(15px);
+}
+
+.title:hover {
+  color: rgb(255, 255, 255);
+  text-decoration: underline;
 }
 
 .box {

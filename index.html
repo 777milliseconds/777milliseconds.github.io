@@ -3,23 +3,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>a</title>
+    <script>
+        let string = "mil".split('');
+        let show = "@";
+        let delay = 500;
+
+        function typing() {
+            for(let i=0;i<string.length;i++) {
+                setTimeout(function() {
+                show += string[i];
+                document.title = show;
+                if(i == string.length-1) {
+                    setTimeout(deleteTyping, (delay*string.length) * 2)
+                }
+                }, delay * i);
+            }
+        }
+
+        function deleteTyping() {
+            for(let i=string.length;i>=1;i--) {
+                setTimeout(function() {
+                show = show.slice(0, -1);
+                document.title = show;
+                if(show.length == 1) {
+                    setTimeout(typing, delay*string.length)
+                }
+                }, delay * i);
+            }
+        }
+
+        typing()
+
+    </script>
 </head>
 
 <body>
-    <p class="title">Pasir</p>
+    <div class="music-container">
+        <p class="current">Juice WRLD - Bigger</p>
+        <i class="fa fa-play-circle" id="playButton" onclick="play()" style="font-size:48px;color:white;cursor: pointer;"></i>
+    </div>
     <div class="box">
         <div class="input-box" contenteditable="true"></div>
         <button class="send-btn" onclick="test()">➤</button>
     </div>
+    <br>
+    <div class="icon-container">
+        <img src="arrow.png" class="arrow" style="height: 45px; width: 45px;">
+        <span class="tooltip">Use code "PASIR" for 5% off @ lean store</span>
+    </div>
+    <br>
+    <div style="display: flex; align-items: center; gap: 12px;">
+        <div class="icon-container">
+            <img src="mail.png" class="mail" onclick="window.location.href='mailto:admin@leanstore.my.id';" style="height: 45px; width: 45px;">
+            <span class="tooltip">admin@leanstore.my.id</span>
+        </div>
+        <div class="icon-container">
+            <img src="lean.png" class="lean" onclick="window.location.href='https:\/\/discord.gg\/mczGxF6bgX';">
+            <span class="tooltip">discord.gg/leanstore</span>
+        </div>
+        <div class="icon-container">
+            <img src="instagram.png" class="instagram" onclick="window.location.href='https:\/\/instagram.com\/777syamil';" style="height: 45px; width: 45px;">
+            <span class="tooltip">@777syamil</span>
+        </div>
+    </div>
+      
 
     <script>
+let played = false;
+var audio = new Audio('Biscotti In The Air.mp3');
+let icon = document.querySelector('.fa-play-circle');
+function play() {
+    if(played) {
+        audio.pause()
+        played = false;
+        icon.classList.remove('fa-pause-circle');
+        icon.classList.add('fa-play-circle');
+    } else {
+        audio.play()
+        played = true;
+        icon.classList.remove('fa-play-circle');
+        icon.classList.add('fa-pause-circle');
+    }
+}
 
 function test() {
     let inputBox = document.querySelector(".input-box");
     let inputText = inputBox.textContent.trim();
 
     if (inputText !== "") {
-        fetch("http://127.0.0.1/post.js", {
+        fetch("https://deadpan-blushing-steam.glitch.me/post", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -28,9 +102,9 @@ function test() {
         })
         .then((res) => {
             if(res.status === 200){
-                window.location.href = "/sent";
+                window.location.href = "https://deadpan-blushing-steam.glitch.me/sent";
             } else {
-                window.location.href = "/error";
+                window.location.href = "https://deadpan-blushing-steam.glitch.me/error";
             }
         });
         inputBox.textContent = "";
